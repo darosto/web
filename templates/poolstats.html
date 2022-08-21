@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Local Pool Stats{% endblock %}
+{% block content %}
+
+    <div id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1>P2Pool Monero lokale übersicht</h1>
+                    <p>Übersicht und status von p2pool</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-container">
+                        <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="connection">Nothing Yet</div>
+                        <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="hashrate_15m">Nothing Yet</div>
+		                <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="hashrate_1h">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="hashrate_24h">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="sharesfound">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="total_hashed">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="average_effort">N/A</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="current_effort">N/A</div>
+                    </div>
+                    <p class="small" id="time"> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+<script>
+			fetch("localstats")
+			.then(response => response.json())
+			.then(data => {
+				document.querySelector("#connection").innerText = 'Verbindungen: ' + data.connections +' clients'
+				document.querySelector("#hashrate_15m").innerText = 'Hashrate 15m: ' + data.hashrate_15m /1000 +' KH/s'
+				document.querySelector("#hashrate_1h").innerText = 'Hashrate 1h: ' + data.hashrate_1h /1000 +' KH/s'
+				document.querySelector("#hashrate_24h").innerText = 'Hashrate 24h: ' + data.hashrate_24h /1000 +' KH/s'
+				document.querySelector("#sharesfound").innerText = 'Shares gefunden: ' + data.shares_found
+				document.querySelector("#total_hashed").innerText = 'Total hashes: ' + data.total_hashes
+				document.querySelector("#average_effort").innerText = 'mittlerer Aufwand: ' + data.average_effort +' %'
+				document.querySelector("#current_effort").innerText = 'aktueller Aufwand: ' + data.current_effort +' %'
+			})
+</script>
+{% endblock %}

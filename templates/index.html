@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}It's Monero{% endblock %}
+{% block content %}
+
+    <header id="header" class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h1 class="h1-large"> MONERO </h1>
+                    <h1 class="h1-large" id="symbol"> </h1>
+                    <h2 class="h2-large" id="current_price"> n/a </h2>
+                    
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-container" >
+                        <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="ath">Nothing Yet</div>
+                        <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="ath_date"> date</div>
+		                <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="atl">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="atl_date">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="market_cap_rank">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="market_cap">Nothing Yet</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-dark text-white" id="total_volume">N/A</div>
+			            <div class="col-sm-4 col-md-12 d-block p-2 bg-monero text-white" id="last_updated">N/A</div>
+                    </div>
+                    <p class="small" > datenquelle coingecko.com </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+{% endblock %}
+
+{% block script %}
+<script>
+			fetch("moneroprice")
+			.then(response => response.json())
+			.then(data => {
+                var athdate = new Date(data[0].ath_date)
+                var atldate = new Date(data[0].atl_date)
+                var lastupdate = new Date(data[0].last_updated)
+                var options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' }
+				document.querySelector("#current_price").innerText = 'Kurs: ' + data[0].current_price +' USD'
+                document.querySelector("#symbol").innerText = data[0].symbol
+                document.querySelector("#ath").innerText = 'Allzeithöchstwert: ' + data[0].ath +' USD'
+                document.querySelector("#ath_date").innerText = athdate.toLocaleDateString('de-DE', options)
+                //document.querySelector("#ath_date").innerText = new Date(athdate.toLocaleDateString('de_DE', options))
+                document.querySelector("#atl").innerText = 'Allzeittief: ' + data[0].atl +' USD'
+                document.querySelector("#atl_date").innerText = atldate.toLocaleDateString('de-DE', options)
+                document.querySelector("#market_cap_rank").innerText = 'Marktkapitalisierung Rang: ' + data[0].market_cap_rank
+                document.querySelector("#market_cap").innerText = 'Marktkapitalisierung: ' + data[0].market_cap
+                document.querySelector("#total_volume").innerText = 'Handelsvolumen: ' + data[0].total_volume
+                document.querySelector("#last_updated").innerText = 'Update: ' + lastupdate.toLocaleTimeString('de-DE', options)
+			})
+</script>
+{% endblock %}

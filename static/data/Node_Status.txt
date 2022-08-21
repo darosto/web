@@ -1,0 +1,14 @@
+ 
+  Monero Version: 
+  Node Status: OK
+  Busy Syncing: false
+  Current Sync Height: 2683107
+  P2P Outgoing Connections: 0
+  P2P Incoming Connections: 0
+  RPC Connections Count: 0
+  Network Type: mainnet
+  TX Pool Size: 46
+  White Peerlist Size: 0
+  Grey Peerlist Size: 0
+  Update Available: false
+ 

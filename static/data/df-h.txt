@@ -1,0 +1,15 @@
+/dev/sda1       235G    176G   48G   79% /
+/dev/loop1       44M     44M     0  100% /snap/certbot/2192
+/dev/sdc1       3.6T    178G  3.3T    6% /media/volume2
+/dev/sdb1       3.6T    2.6T  842G   76% /media/volume1
+/dev/loop2      114M    114M     0  100% /snap/core/13308
+/dev/loop0       44M     44M     0  100% /snap/certbot/2133
+/dev/loop4       62M     62M     0  100% /snap/core20/1587
+/dev/loop5       56M     56M     0  100% /snap/core18/2409
+/dev/loop3       56M     56M     0  100% /snap/core18/2538
+/dev/loop6      119M    119M     0  100% /snap/docker/1779
+/dev/loop7       68M     68M     0  100% /snap/lxd/22753
+/dev/loop8       68M     68M     0  100% /snap/lxd/22526
+/dev/loop9       62M     62M     0  100% /snap/core20/1581
+/dev/loop10     114M    114M     0  100% /snap/core/13425
+Monero 'Fluorine Fermi' (v0.18.0.0-release)
